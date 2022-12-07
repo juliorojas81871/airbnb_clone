@@ -28,8 +28,6 @@ const Header = () => {
       {/* middle - Search */}
       <div className="flex items-center min-w-[230px] md:border-2 rounded-full py-2 md:shadow-sm">
         <input
-          value={()=>{}}
-          onChange={()=>{}}
           className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
         />

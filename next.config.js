@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
-}
+  swcMinify: true,
+  images: {
+    domains: ["jsonkeeper.com", "i.ibb.co"],
+  },
+};
+
+module.exports = nextConfig;
