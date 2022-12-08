@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Header, Banner, SmallCard, LargeCard } from "../components";
+import { Header, Banner, SmallCard, LargeCard, Footer } from "../components";
 
-const Home = ({exploreData}) => {
+const Home = ({ exploreData }) => {
   return (
     <div>
       <Head>
@@ -28,7 +28,6 @@ const Home = ({exploreData}) => {
           </div>
         </section>
 
-      
         <LargeCard
           img="/largeCard.webp"
           title="The Greatest Outdoors"
@@ -36,6 +35,7 @@ const Home = ({exploreData}) => {
           buttonText="Get Inspired"
         />
       </main>
+      <Footer />
     </div>
   );
 };

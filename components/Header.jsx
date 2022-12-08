@@ -9,8 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 const Header = () => {
-
-    return (
+  return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-3 md:px-10">
       {/* left - Logo */}
       <div
@@ -32,7 +31,7 @@ const Header = () => {
           type="text"
         />
         <MagnifyingGlassIcon
-          onClick={()=>{}}
+          onClick={() => {}}
           className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"
         />
       </div>
@@ -46,9 +45,8 @@ const Header = () => {
           <UserCircleIcon className="h-6" />
         </div>
       </div>
-      
     </header>
   );
-}
+};
 
 export default Header;
