@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Header, Banner, SmallCard, LargeCard, Footer } from "../components";
+import { Header, Banner, SmallCard, LargeCard, Footer, MediumCard } from "../components";
 
-const Home = ({ exploreData }) => {
+const Home = ({ exploreData, cardsData }) => {
   return (
     <div>
       <Head>
@@ -27,9 +27,17 @@ const Home = ({ exploreData }) => {
             ))}
           </div>
         </section>
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
 
+          <div className="flex space-x-3 overflow-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-red-400 p-3 -ml-3">
+            {cardsData.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
         <LargeCard
-          img="/largeCard.webp"
+          img="/card/large/largeCard.webp"
           title="The Greatest Outdoors"
           description="Wishlists curated by Airbnb."
           buttonText="Get Inspired"
@@ -46,9 +54,14 @@ export async function getStaticProps() {
   const exploreData = await fetch("https://www.jsonkeeper.com/b/2FD5").then(
     (res) => res.json()
   );
+  const cardsData = await fetch("https://www.jsonkeeper.com/b/QS2O").then(
+    (res) => res.json()
+  );
+
   return {
     props: {
       exploreData,
+      cardsData,
     },
   };
 }
