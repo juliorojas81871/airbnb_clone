@@ -10,14 +10,39 @@ import {
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import { useRouter } from "next/router";
+import { useRouter } from "next/dist/client/router";
 
-const Header = () => {
+const Header = ({ placeholder }) => {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState(1);
-  const router = useRouter()
+  const [location, setLocation] = useState("");
+  const router = useRouter();
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  const resetInput = () => {
+    setSearchInput("");
+  };
+
+  const search = () => {
+    if (searchInput !== "") {
+      router.push({
+        pathname: "/search",
+        query: {
+          location: location,
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+          noOfGuests,
+        },
+      });
+      setSearchInput("");
+    }
+  };
 
   const selectionRange = {
     startDate: startDate,
@@ -25,19 +50,49 @@ const Header = () => {
     key: "selection",
   };
 
-  const handleSelect = (ranges) => {
-    setStartDate(ranges.selection.startDate);
-    setEndDate(ranges.selection.endDate);
+  const findLocation = (e) => {
+    setSearchInput(e.target.value);
+    setLocation("Unknown");
+    if ("new york".includes(e.target.value.toLowerCase())) {
+      setLocation("New York");
+    }
+    if ("london".includes(e.target.value.toLowerCase())) {
+      setLocation("London");
+    }
+    if ("dubai".includes(e.target.value.toLowerCase())) {
+      setLocation("Dubai");
+    }
+    if ("paris".includes(e.target.value.toLowerCase())) {
+      setLocation("Paris");
+    }
+    if ("manchester".includes(e.target.value.toLowerCase())) {
+      setLocation("Manchester");
+    }
+    if ("liverpool".includes(e.target.value.toLowerCase())) {
+      setLocation("Liverpool");
+    }
+    if ("york".includes(e.target.value.toLowerCase())) {
+      setLocation("York");
+    }
+    if ("cardiff".includes(e.target.value.toLowerCase())) {
+      setLocation("Cardiff");
+    }
+    if ("birkenhead".includes(e.target.value.toLowerCase())) {
+      setLocation("Birkenhead");
+    }
+    if ("newquay".includes(e.target.value.toLowerCase())) {
+      setLocation("Newquay");
+    }
+    if ("hove".includes(e.target.value.toLowerCase())) {
+      setLocation("Hove");
+    }
   };
 
-  const search = () => {
-    if(searchInput !== ""){
-      router.push({
-        pathname: "/search"
-      })
-      setSearchInput("")
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      search();
     }
-  }
+  };
 
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-3 md:px-10">
@@ -48,9 +103,8 @@ const Header = () => {
       >
         <Image
           src="/airbnb_logo.png"
-          layout="fill"
-          objectFit="contain"
-          objectPosition="left"
+          fill
+          className="object-contain object-left"
           alt=""
         />
       </div>
@@ -61,7 +115,11 @@ const Header = () => {
           className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => findLocation(e)}
+          placeholder={
+            placeholder || "Search London, New York, Dubai or Paris..."
+          }
+          onKeyDown={handleKeyDown}
         />
         <MagnifyingGlassIcon
           onClick={() => {}}
@@ -107,7 +165,9 @@ const Header = () => {
             >
               Cancel
             </button>
-            <button className="flex-grow text-red-400" onClick={search}>Search</button>
+            <button className="flex-grow text-red-400" onClick={search}>
+              Search
+            </button>
           </div>
         </div>
       )}
