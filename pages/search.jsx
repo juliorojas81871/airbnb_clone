@@ -1,10 +1,8 @@
-import { useRouter } from "next/dist/client/router";
 import React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Head from "next/head";
+import { Footer, Header, InfoCard, MapBox } from "../components";
+import { useRouter } from "next/dist/client/router";
 import { format } from "date-fns";
-import InfoCard from "../components/InfoCard";
-import MapBox from "../components/MapBox";
 
 const search = ({ searchResults, searchLocation }) => {
   const router = useRouter();
@@ -19,7 +17,10 @@ const search = ({ searchResults, searchLocation }) => {
 
   return (
     <div>
-     
+      <Head>
+        <title>Airbnb Clone - Search</title>
+        <link rel="icon" href="/airbnb_icon.png" />
+      </Head>
       <Header
         placeholder={`${
           location === "Unknown" ? searchLocation : location
@@ -162,4 +163,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
