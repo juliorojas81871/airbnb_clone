@@ -41,33 +41,35 @@ const search = ({ searchResults, searchLocation }) => {
             <p className="button">Rooms and Beds</p>
             <p className="button">More filters</p>
           </div>
-          {searchResults.map(
-            ({
-              img,
-              message,
-              name,
-              guests,
-              beds,
-              baths,
-              amenities,
-              rating,
-              price,
-              per_night,
-            }) => (
-              <InfoCard
-                key={img}
-                img={img}
-                location={message}
-                title={name}
-                description={`${guests} · ${beds} · ${baths} · ${amenities
-                  .map((amenity) => amenity)
-                  .join(" · ")}`}
-                star={rating}
-                price={per_night}
-                total={price}
-              />
-            )
-          )}
+          <div className="flex flex-col">
+            {searchResults?.map(
+              ({
+                img,
+                message,
+                name,
+                guests,
+                beds,
+                baths,
+                amenities,
+                rating,
+                price,
+                per_night,
+              }) => (
+                <InfoCard
+                  key={img}
+                  img={img}
+                  location={message}
+                  title={name}
+                  description={`${guests} · ${beds} · ${baths} · ${amenities
+                    .map((amenity) => amenity)
+                    .join(" · ")}`}
+                  star={rating}
+                  price={per_night}
+                  total={price}
+                />
+              )
+            )}
+          </div>
         </section>
       </main>
       <Footer />
