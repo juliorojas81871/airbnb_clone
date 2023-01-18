@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 
-function SmallCard({ img, location, distance }) {
+const SmallCard = ({ img, location, distance }) => {
   const router = useRouter();
   const search = () => {
     router.push({

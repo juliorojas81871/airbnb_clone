@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 
-function Banner() {
+const Banner = () => {
   const locations = [
     "London",
     "New York",
@@ -49,6 +49,6 @@ function Banner() {
       </div>
     </div>
   );
-}
+};
 
 export default Banner;

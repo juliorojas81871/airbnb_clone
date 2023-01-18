@@ -4,7 +4,7 @@ import { Footer, Header, InfoCard, MapBox } from "../components";
 import { useRouter } from "next/dist/client/router";
 import { format } from "date-fns";
 
-const search = ({ searchResults, searchLocation }) => {
+const Search = ({ searchResults, searchLocation }) => {
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
   const formattedStartDate = startDate
@@ -82,7 +82,7 @@ const search = ({ searchResults, searchLocation }) => {
   );
 };
 
-export default search;
+export default Search;
 
 export async function getServerSideProps(context) {
   const { location } = context.query;
