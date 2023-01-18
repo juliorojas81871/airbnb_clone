@@ -1,14 +1,15 @@
 import Image from "next/image";
 import React from "react";
 
-const LargeCard = ({ img, title, description, buttonText }) => {
+function LargeCard({ img, title, description, buttonText }) {
   return (
     <section className="relative py-16 cursor-pointer">
       <div className="relative h-96 min-w-[300px]">
         <Image
           src={img}
-          fill
-          className="rounded-2xl object-cover"
+          layout="fill"
+          objectFit="cover"
+          className="rounded-2xl"
         />
       </div>
 

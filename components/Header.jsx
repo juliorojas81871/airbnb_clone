@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MagnifyingGlassIcon,
   GlobeAltIcon,
@@ -12,7 +12,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
 
-const Header = ({ placeholder }) => {
+function Header({ placeholder }) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -103,26 +103,26 @@ const Header = ({ placeholder }) => {
       >
         <Image
           src="/airbnb_logo.png"
-          fill
-          className="object-contain object-left"
-          alt=""
+          layout="fill"
+          objectFit="contain"
+          objectPosition="left"
         />
       </div>
 
       {/* middle - Search */}
       <div className="flex items-center min-w-[230px] md:border-2 rounded-full py-2 md:shadow-sm">
         <input
-          className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
-          type="text"
           value={searchInput}
           onChange={(e) => findLocation(e)}
+          className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
+          type="text"
           placeholder={
             placeholder || "Search London, New York, Dubai or Paris..."
           }
           onKeyDown={handleKeyDown}
         />
         <MagnifyingGlassIcon
-          onClick={() => {}}
+          onClick={search}
           className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"
         />
       </div>
@@ -137,7 +137,7 @@ const Header = ({ placeholder }) => {
         </div>
       </div>
       {searchInput && (
-        <div className="flex flex-col col-span-3 mx-auto mt-10">
+        <div className="flex flex-col col-span-3 mx-auto">
           <DateRangePicker
             ranges={[selectionRange]}
             minDate={new Date()}
@@ -145,27 +145,23 @@ const Header = ({ placeholder }) => {
             onChange={handleSelect}
           />
           <div className="flex items-center border-b mb-4">
-            <h2 className="flex-grow text-2xl font-semibold">
+            <h2 className="text-2xl flex-grow font-semibold">
               Number of Guests
             </h2>
             <UsersIcon className="h-5" />
             <input
-              type="number"
-              className="w-12 pl-2 text-lg outline-none text-red-400"
               value={noOfGuests}
-              min={1}
               onChange={(e) => setNoOfGuests(e.target.value)}
+              type="number"
+              min={1}
+              className="w-12 pl-2 text-lg outline-none text-red-400"
             />
           </div>
-          {/* emmet for react */}
           <div className="flex">
-            <button
-              className="flex-grow text-grey-500"
-              onClick={() => setSearchInput("")}
-            >
+            <button className="flex-grow text-gray-500" onClick={resetInput}>
               Cancel
             </button>
-            <button className="flex-grow text-red-400" onClick={search}>
+            <button onClick={search} className="flex-grow text-red-400">
               Search
             </button>
           </div>
@@ -173,6 +169,6 @@ const Header = ({ placeholder }) => {
       )}
     </header>
   );
-};
+}
 
 export default Header;

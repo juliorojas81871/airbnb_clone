@@ -1,11 +1,27 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 
-const SmallCard = ({ img, location, distance }) => {
+function SmallCard({ img, location, distance }) {
+  const router = useRouter();
+  const search = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: location,
+        startDate: new Date().toISOString(),
+        endDate: new Date().toISOString(),
+        noOfGuests: 1,
+      },
+    });
+  };
   return (
-    <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition transform duration-200 ease-out">
+    <div
+      onClick={search}
+      className="flex items-center m-2 mt-5 space-x-4 rounded-xl cursor-pointer hover:bg-gray-100 hover:scale-105 transition transform duration-200 ease-out"
+    >
       <div className="relative h-16 w-16">
-        <Image src={img} fill className="rounded-lg" />
+        <Image src={img} layout="fill" className="rounded-lg" />
       </div>
       <div>
         <h2>{location}</h2>
@@ -13,6 +29,6 @@ const SmallCard = ({ img, location, distance }) => {
       </div>
     </div>
   );
-};
+}
 
 export default SmallCard;

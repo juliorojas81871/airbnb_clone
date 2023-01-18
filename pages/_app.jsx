@@ -1,6 +1,7 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const progress = new ProgressBar({
   size: 4,
@@ -14,7 +15,7 @@ Router.events.on("routeChangeComplete", progress.finish);
 Router.events.on("routeChangeError", progress.finish);
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;

@@ -1,27 +1,31 @@
 {
+  "name": "airbnb-clone",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.2",
-    "@heroicons/react": "^2.0.13",
+    "@heroicons/react": "^2.0.12",
     "date-fns": "^2.29.3",
-    "next": "latest",
+    "geolib": "^3.3.3",
+    "mapbox-gl": "^2.10.0",
+    "next": "12.3.1",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
     "react-dom": "18.2.0",
-    "tailwind-scrollbar": "^2.0.1"
+    "react-map-gl": "^7.0.19",
+    "tailwind-scrollbar": "^2.1.0"
   },
   "devDependencies": {
-    "@types/node": "18.11.3",
-    "@types/react": "18.0.21",
-    "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",
+    "eslint": "8.26.0",
+    "eslint-config-next": "12.3.1",
     "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1",
-    "typescript": "4.8.4"
+    "tailwindcss": "^3.2.1"
   }
 }
